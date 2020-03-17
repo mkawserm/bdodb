@@ -10,10 +10,11 @@ import (
 )
 
 func open(t *testing.T, mo store.MergeOperator) store.KVStore {
-	rv, err := NewStore(mo, map[string]interface{}{
+	rv, err := NewStore()(mo, map[string]interface{}{
 		"path":              "test_bdodb_db",
 		"create_if_missing": true,
 	})
+
 	if err != nil {
 		t.Fatal(err)
 	}

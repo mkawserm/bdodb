@@ -15,7 +15,7 @@ func BleveIndex(path string, mapping mapping.IndexMapping, indexType string, con
 	index, err := bleve.NewUsing(path, mapping, indexType, EngineName, config)
 
 	if err != nil && err == bleve.ErrorIndexPathExists {
-		index, err = bleve.Open(path)
+		index, err = bleve.OpenUsing(path, config)
 	}
 
 	return index, err
