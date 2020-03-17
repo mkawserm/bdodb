@@ -1,11 +1,12 @@
 package bdodb
 
 import (
+	"os"
+	"time"
+
 	"github.com/blevesearch/bleve/index/store"
 	"github.com/dgraph-io/badger/v2"
 	"github.com/dgraph-io/badger/v2/options"
-	"os"
-	"time"
 )
 
 // Store implements bleve store
