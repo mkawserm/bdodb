@@ -2,7 +2,6 @@ module github.com/mkawserm/bdodb
 
 go 1.14
 
-
 require (
 	github.com/RoaringBitmap/roaring v0.4.21 // indirect
 	github.com/blevesearch/bleve v0.8.1
