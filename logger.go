@@ -25,4 +25,6 @@ func (l *defaultLog) Debugf(f string, v ...interface{}) {
 	l.Printf("DEBUG: "+f, v...)
 }
 
+// DefaultLogger is the default logger for bdodb
+// Set different logger to modify the logging behavior
 var DefaultLogger = &defaultLog{Logger: log.New(os.Stderr, "bdodb ", log.LstdFlags)}
