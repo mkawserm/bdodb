@@ -14,6 +14,8 @@ func cleanupDb(t *testing.T, path string) {
 
 func TestBleveIndex(t *testing.T) {
 	dbPath := "/tmp/test_bdodb"
+	defer cleanupDb(t, dbPath)
+
 	index, err := BleveIndex(dbPath, bleve.NewIndexMapping(), upsidedown.Name, nil)
 
 	if err != nil {
@@ -24,13 +26,13 @@ func TestBleveIndex(t *testing.T) {
 	if index == nil {
 		t.Error("Failed to create bleve index")
 	}
-
-	cleanupDb(t, dbPath)
 }
 
 func TestBleveIndexWithEncryptionEnabled(t *testing.T) {
 	dbPath := "/tmp/test_bdodb_encrypted"
 	encryptionKey := []byte("67356274875244489356392574264952")
+
+	defer cleanupDb(t, dbPath)
 
 	{
 		// create index if not exists
@@ -106,6 +108,4 @@ func TestBleveIndexWithEncryptionEnabled(t *testing.T) {
 			return
 		}
 	}
-
-	cleanupDb(t, dbPath)
 }
