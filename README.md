@@ -26,8 +26,8 @@ import (
     "github.com/mkawserm/bdodb"
 )
 
-func main() {
-	// create or open bleveIndex
+func main() { 
+    // create or open bleveIndex
     index, err := bdodb.BleveIndex("/tmp/bdodb", bleve.NewIndexMapping(), scorch.Name, nil)
     
     message := struct{
