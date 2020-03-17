@@ -6,7 +6,7 @@ import (
 	"github.com/dgraph-io/badger/v2"
 )
 
-// Iterator implements bleve iterator
+// Iterator implements bleve store iterator
 type Iterator struct {
 	iterator *badger.Iterator
 	prefix   []byte

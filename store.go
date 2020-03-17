@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/blevesearch/bleve/index/store"
+	"github.com/blevesearch/bleve/registry"
 	"github.com/dgraph-io/badger/v2"
 	"github.com/dgraph-io/badger/v2/options"
 )
@@ -213,4 +214,9 @@ func (store *Store) Writer() (store.KVWriter, error) {
 	return &Writer{
 		store: store,
 	}, nil
+}
+
+// init add the engine name to blevesearch
+func init() {
+	registry.RegisterKVStore(EngineName, NewStore)
 }

@@ -2,8 +2,6 @@ package bdodb
 
 import (
 	"fmt"
-	"log"
-
 	"github.com/blevesearch/bleve/index/store"
 )
 
@@ -33,13 +31,13 @@ func (writer *Writer) ExecuteBatch(batch store.KVBatch) (err error) {
 
 	defer (func() {
 		err := txn.Commit()
-		log.Printf("ERROR: %v\n", err)
+		defaultLogger.Errorf("%v\n", err)
 	})()
 
 	for k, mergeOps := range emulatedBatch.Merger.Merges {
 		kb := []byte(k)
 		item, err := txn.Get(kb)
-		existingVal := []byte{}
+		var existingVal []byte
 		if err == nil {
 			existingVal, _ = item.ValueCopy(nil)
 		}

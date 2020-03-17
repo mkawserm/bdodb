@@ -11,7 +11,7 @@ import (
 
 func open(t *testing.T, mo store.MergeOperator) store.KVStore {
 	rv, err := NewStore(mo, map[string]interface{}{
-		"path":              "test_bdodb",
+		"path":              "test_bdodb_db",
 		"create_if_missing": true,
 	})
 	if err != nil {
@@ -26,7 +26,7 @@ func cleanup(t *testing.T, s store.KVStore) {
 		log.Printf("%+v\n", err)
 		t.Fatal(err)
 	}
-	err = os.RemoveAll("test_bdodb")
+	err = os.RemoveAll("test_bdodb_db")
 	if err != nil {
 		t.Fatal(err)
 	}

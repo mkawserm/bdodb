@@ -5,7 +5,7 @@ import (
 	"github.com/dgraph-io/badger/v2"
 )
 
-// Reader implements bleve/Store/Reader interface
+// Reader implements bleve store Reader interface
 type Reader struct {
 	iteratorOptions badger.IteratorOptions
 	store           *Store
