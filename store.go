@@ -52,8 +52,12 @@ func NewStore() registry.KVStoreConstructor {
 		if bdodbConfig, ok := config["BdodbConfig"].(Config); ok {
 			opt.EncryptionKey = bdodbConfig.EncryptionKey
 			opt.Logger = bdodbConfig.Logger
+		} else {
+			if bdodbConfig, ok := config["BdodbConfig"].(*Config); ok {
+				opt.EncryptionKey = bdodbConfig.EncryptionKey
+				opt.Logger = bdodbConfig.Logger
+			}
 		}
-
 		/* usually modified options */
 
 		// SyncWrites

@@ -13,7 +13,7 @@ func cleanupDb(t *testing.T, path string) {
 }
 
 func TestBleveIndex(t *testing.T) {
-	dbPath := "/tmp/bdodb"
+	dbPath := "/tmp/test_bdodb"
 	index, err := BleveIndex(dbPath, bleve.NewIndexMapping(), upsidedown.Name, nil)
 
 	if err != nil {
@@ -29,7 +29,7 @@ func TestBleveIndex(t *testing.T) {
 }
 
 func TestBleveIndexWithEncryptionEnabled(t *testing.T) {
-	dbPath := "/tmp/bdodb_encrypted"
+	dbPath := "/tmp/test_bdodb_encrypted"
 	encryptionKey := []byte("67356274875244489356392574264952")
 
 	{
@@ -61,6 +61,31 @@ func TestBleveIndexWithEncryptionEnabled(t *testing.T) {
 	{
 		index, err := BleveIndex(dbPath, bleve.NewIndexMapping(), upsidedown.Name, map[string]interface{}{
 			"BdodbConfig": Config{
+				EncryptionKey: encryptionKey,
+				Logger:        nil,
+			},
+		})
+
+		if err != nil {
+			t.Errorf("%v", err)
+			return
+		}
+
+		if index == nil {
+			t.Error("Failed to create bleve index")
+		}
+
+		err = index.Close()
+		if err != nil {
+			t.Errorf("%v", err)
+			return
+		}
+	}
+
+	// index file should already exists now open it using config pointer
+	{
+		index, err := BleveIndex(dbPath, bleve.NewIndexMapping(), upsidedown.Name, map[string]interface{}{
+			"BdodbConfig": &Config{
 				EncryptionKey: encryptionKey,
 				Logger:        nil,
 			},
