@@ -5,6 +5,14 @@ import (
 	"os"
 )
 
+// Logger interface
+type Logger interface {
+	Errorf(f string, v ...interface{})
+	Warningf(f string, v ...interface{})
+	Infof(f string, v ...interface{})
+	Debugf(f string, v ...interface{})
+}
+
 type defaultLog struct {
 	*log.Logger
 }
@@ -27,4 +35,4 @@ func (l *defaultLog) Debugf(f string, v ...interface{}) {
 
 // DefaultLogger is the default logger for bdodb
 // Set different logger to modify the logging behavior
-var DefaultLogger = &defaultLog{Logger: log.New(os.Stderr, "bdodb ", log.LstdFlags)}
+var DefaultLogger Logger = &defaultLog{Logger: log.New(os.Stderr, "bdodb ", log.LstdFlags)}

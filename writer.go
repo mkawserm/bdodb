@@ -32,7 +32,9 @@ func (writer *Writer) ExecuteBatch(batch store.KVBatch) (err error) {
 	defer (func() {
 		err := txn.Commit()
 		if err != nil {
-			DefaultLogger.Errorf("%v\n", err)
+			if DefaultLogger != nil {
+				DefaultLogger.Errorf("%v\n", err)
+			}
 		}
 	})()
 
