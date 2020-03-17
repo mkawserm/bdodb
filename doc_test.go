@@ -24,7 +24,7 @@ func ExampleBleveIndex() {
 	}
 
 	// index message data
-	if val, _ := index.GetInternal([]byte(message.Id)); val == nil {
+	if val, _ := index.Document(message.Id); val == nil {
 		if err := index.Index(message.Id, message); err != nil {
 			panic(err)
 		}
