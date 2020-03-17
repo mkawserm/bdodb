@@ -22,13 +22,13 @@ package main
 import (
     "fmt"
     "github.com/blevesearch/bleve"
-    "github.com/blevesearch/bleve/index/scorch"
+    "github.com/blevesearch/bleve/index/upsidedown"
     "github.com/mkawserm/bdodb"
 )
 
 func main() { 
     // create or open bleveIndex
-    index, err := bdodb.BleveIndex("/tmp/bdodb", bleve.NewIndexMapping(), scorch.Name, nil)
+    index, err := bdodb.BleveIndex("/tmp/bdodb", bleve.NewIndexMapping(), upsidedown.Name, nil)
     
     message := struct{
         Id   string
