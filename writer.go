@@ -31,7 +31,9 @@ func (writer *Writer) ExecuteBatch(batch store.KVBatch) (err error) {
 
 	defer (func() {
 		err := txn.Commit()
-		defaultLogger.Errorf("%v\n", err)
+		if err != nil {
+			DefaultLogger.Errorf("%v\n", err)
+		}
 	})()
 
 	for k, mergeOps := range emulatedBatch.Merger.Merges {

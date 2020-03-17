@@ -25,4 +25,4 @@ func (l *defaultLog) Debugf(f string, v ...interface{}) {
 	l.Printf("DEBUG: "+f, v...)
 }
 
-var defaultLogger = &defaultLog{Logger: log.New(os.Stderr, "bdodb ", log.LstdFlags)}
+var DefaultLogger = &defaultLog{Logger: log.New(os.Stderr, "bdodb ", log.LstdFlags)}
