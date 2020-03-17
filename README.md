@@ -27,8 +27,9 @@ import (
 )
 
 func main() {
-	// create or open bleveIndex 
-	index, err := bdodb.BleveIndex("/tmp/bdodb", bleve.NewIndexMapping(), scorch.Name, nil)
+	// create or open bleveIndex
+    index, err := bdodb.BleveIndex("/tmp/bdodb", bleve.NewIndexMapping(), scorch.Name, nil)
+    
     message := struct{
         Id   string
         Body string
