@@ -58,24 +58,22 @@ func (i *Iterator) Value() []byte {
 
 // Valid whether the current iterator step is valid or not
 func (i *Iterator) Valid() bool {
+	// for prefix iterator
 	if len(i.prefix) > 0 {
 		return i.iterator.ValidForPrefix(i.prefix)
-	} else {
+	}
 
-		if !i.iterator.Valid() {
-			return false
-		}
-
-		if i.stop == nil || len(i.stop) == 0 {
-			return true
-		}
-
-		if bytes.Compare(i.stop, i.iterator.Item().Key()) <= 0 {
-			return false
-		}
-
+	// for range based iterator
+	if !i.iterator.Valid() {
+		return false
+	}
+	if i.stop == nil || len(i.stop) == 0 {
 		return true
 	}
+	if bytes.Compare(i.stop, i.iterator.Item().Key()) <= 0 {
+		return false
+	}
+	return true
 }
 
 // Close closes the current iterator and commit its transaction

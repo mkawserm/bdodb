@@ -26,7 +26,7 @@ func (reader *Reader) MultiGet(keys [][]byte) ([][]byte, error) {
 	return store.MultiGet(reader, keys)
 }
 
-// Iterator initialize a new prefix iterator
+// PrefixIterator initialize a new prefix iterator
 func (reader *Reader) PrefixIterator(k []byte) store.KVIterator {
 	itr := reader.txn.NewIterator(reader.iteratorOptions)
 	rv := Iterator{
