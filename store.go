@@ -216,7 +216,7 @@ func (store *Store) Writer() (store.KVWriter, error) {
 	}, nil
 }
 
-// init add the engine name to blevesearch
+// init add the engine name to the bleve
 func init() {
 	registry.RegisterKVStore(EngineName, NewStore)
 }
