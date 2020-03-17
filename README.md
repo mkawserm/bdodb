@@ -20,8 +20,7 @@ with all the customization options provided by the badger
 package main
 
 import (
-	"fmt"
-
+    "fmt"
     "github.com/blevesearch/bleve"
     "github.com/blevesearch/bleve/index/scorch"
     "github.com/mkawserm/bdodb"
